@@ -9,10 +9,10 @@ class Navigation extends React.Component<{}, {}> {
     return (
       <div className="UnderlineNav width-full user-profile-nav js-sticky top-0">
         <div className="UnderlineNav-body">
-          <a className="UnderlineNav-item mr-0 mr-md-1 mr-lg-3 selected">
+          <a className="UnderlineNav-item mr-0 mr-md-1 mr-lg-3 selected" href="/">
             Overview
           </a>
-          <a className="UnderlineNav-item mr-0 mr-md-1 mr-lg-3">
+          <a className="UnderlineNav-item mr-0 mr-md-1 mr-lg-3" href="/">
             Repositories
             <span className="Counter hide-lg hide-md hide-sm">55</span>
           </a>
