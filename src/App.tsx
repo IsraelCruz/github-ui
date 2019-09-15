@@ -1,6 +1,5 @@
 import React from "react";
 import "@primer/css/index.scss";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import Navigation from "./components/Navigation";
 

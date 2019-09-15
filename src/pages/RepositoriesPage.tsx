@@ -1,5 +1,7 @@
 import * as React from "react";
 import { RepositoryItem } from "./../components/RepositoryItem";
+import RepositoryFilter from "./../components/RepositoryFilter";
+
 
 const mockData = [
   {
@@ -272,6 +274,7 @@ class RepositoriesPage extends React.Component<{}, {}> {
 
     return (
       <div className="position-relative">
+      <RepositoryFilter />
       <ul>        {repoItems}</ul>
 
       </div>
