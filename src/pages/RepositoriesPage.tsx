@@ -2,7 +2,6 @@ import * as React from "react";
 import { RepositoryItem } from "./../components/RepositoryItem";
 import RepositoryFilter from "./../components/RepositoryFilter";
 
-
 const mockData = [
   {
     id: 132935648,
@@ -259,24 +258,47 @@ const mockData = [
   }
 ];
 
-class RepositoriesPage extends React.Component<{}, {}> {
+class RepositoriesPage extends React.Component<
+  {},
+  { repoData: any[]; filteredData: any[] }
+> {
   constructor(props: any) {
     super(props);
-    this.state = {};
+    this.state = {
+      repoData: [],
+      filteredData: []
+    };
+
+    this.filterData = this.filterData.bind(this);
   }
+
+  public componentDidMount() {
+    this.setState({ repoData: mockData, filteredData: mockData });
+  }
+
+  public filterData(searchValue: string) {
+    console.log(this.state);
+    console.log(searchValue);
+    let filteredData = this.state.repoData.filter(function(item) {
+      return item.name.toLowerCase().startsWith(searchValue.toLowerCase());
+    });
+    console.log(filteredData);
+    this.setState({ filteredData });
+  }
+
   public render() {
+    let repositoryItems: any = [];
 
-    let repoItems: any = [];
+    //empty care return ?
 
-    mockData.forEach(function(item) {
-      repoItems.push(<RepositoryItem item={item} />);
+    this.state.filteredData.forEach(function(item) {
+      repositoryItems.push(<RepositoryItem item={item} />);
     });
 
     return (
       <div className="position-relative">
-      <RepositoryFilter />
-      <ul>        {repoItems}</ul>
-
+        <RepositoryFilter filterData={this.filterData} />
+        <ul>{repositoryItems}</ul>
       </div>
     );
   }

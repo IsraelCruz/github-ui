@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
 import OverviewPage from "./../pages/OverviewPage";
 import RepositoriesPage from "./../pages/RepositoriesPage";
 
@@ -9,6 +9,8 @@ class Navigation extends React.Component<{}, {}> {
     this.state = {};
   }
   public render() {
+  	//var currentLocation = window.location.pathname;
+  	//console.log(currentLocation)
     return (
       <Router>
         <div className="UnderlineNav width-full user-profile-nav js-sticky top-0">
