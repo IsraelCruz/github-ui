@@ -1,4 +1,7 @@
 import * as React from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import OverviewPage from "./../pages/OverviewPage";
+import RepositoriesPage from "./../pages/RepositoriesPage";
 
 class Navigation extends React.Component<{}, {}> {
   constructor(props: any) {
@@ -7,17 +10,28 @@ class Navigation extends React.Component<{}, {}> {
   }
   public render() {
     return (
-      <div className="UnderlineNav width-full user-profile-nav js-sticky top-0">
-        <div className="UnderlineNav-body">
-          <a className="UnderlineNav-item mr-0 mr-md-1 mr-lg-3 selected" href="/">
-            Overview
-          </a>
-          <a className="UnderlineNav-item mr-0 mr-md-1 mr-lg-3" href="/">
-            Repositories
-            <span className="Counter hide-lg hide-md hide-sm">55</span>
-          </a>
+      <Router>
+        <div className="UnderlineNav width-full user-profile-nav js-sticky top-0">
+          <div className="UnderlineNav-body">
+            <Link
+              className="UnderlineNav-item mr-0 mr-md-1 mr-lg-3 selected"
+              to="/"
+            >
+              Overview
+            </Link>
+            <Link
+              className="UnderlineNav-item mr-0 mr-md-1 mr-lg-3"
+              to="/Repositories/"
+            >
+              Repositories
+              <span className="Counter hide-lg hide-md hide-sm">55</span>
+            </Link>
+          </div>
         </div>
-      </div>
+
+        <Route path="/" exact component={OverviewPage} />
+        <Route path="/Repositories/" component={RepositoriesPage} />
+      </Router>
     );
   }
 }
