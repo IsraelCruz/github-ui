@@ -1,6 +1,5 @@
 import * as React from "react";
 import { RepositoryItem } from "./../components/RepositoryItem";
-// import { DetailMenu } from "./../components/DetailMenu";
 import RepositoryFilter from "./../components/RepositoryFilter";
 import moment from "moment";
 
@@ -304,7 +303,6 @@ class RepositoriesPage extends React.Component<
       <div className="position-relative">
         <RepositoryFilter filterData={this.filterData} />
         <ul>{repositoryItems}</ul>
-        {/*<DetailMenu />*/}
       </div>
     );
   }

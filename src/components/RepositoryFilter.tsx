@@ -1,4 +1,5 @@
 import * as React from "react";
+import DetailMenu from "./../components/DetailMenu";
 
 class RepositoryFilter extends React.Component<
   { filterData: any },
@@ -41,20 +42,12 @@ class RepositoryFilter extends React.Component<
             ></input>
           </div>
           <div className="d-flex">
-            {/* Dropdown Options */}
+            {/* Filters */}
             <div className="details-reset details-overlay position-relative mr-2">
-              <div className="btn" aria-haspopup="menu" role="button">
-                <i>Type:</i>
-                <span data-menu-button=""> All </span>
-                <span className="dropdown-caret"></span>
-              </div>
+              <DetailMenu filterName="Type" />
             </div>
             <div className="details-reset details-overlay position-relative mr-2">
-              <div className="btn" aria-haspopup="menu" role="button">
-                <i>Language:</i>
-                <span data-menu-button=""> All </span>
-                <span className="dropdown-caret"></span>
-              </div>
+              <DetailMenu filterName="Language" />
             </div>
           </div>
         </form>
