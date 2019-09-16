@@ -257,29 +257,33 @@ const mockData = [
   }
 ];
 
-class OverviewPage extends React.Component<{}, { repoData: any[];}> {
+class OverviewPage extends React.Component<{}, { repoData: any[] }> {
   constructor(props: any) {
     super(props);
     this.state = {
-    	      repoData: [],
-
+      repoData: []
     };
   }
 
-
   public componentDidMount() {
-
-  	let sortedData = mockData.sort(function(a, b){return b.stargazers_count - a.stargazers_count});
+    let sortedData = mockData.sort(function(a, b) {
+      return b.stargazers_count - a.stargazers_count;
+    });
 
     this.setState({ repoData: sortedData });
   }
 
-  public render() {
-    let repoItems: any = [];
+  public createRepoItems(){
+  	let repoItems: any = [];
 
     mockData.forEach(function(item) {
       repoItems.push(<OverviewItem item={item} />);
     });
+    return repoItems;
+  }
+
+  public render() {
+
 
     return (
       <div className="position-relative">
@@ -287,7 +291,7 @@ class OverviewPage extends React.Component<{}, { repoData: any[];}> {
           <div className="js-pinned-items-reorder-container">
             <h2 className="f4 mb-2 text-normal">Popular repositories</h2>
             <ol className="d-flex flex-wrap list-style-none gutter-condensed mb-4">
-              {repoItems}
+              {this.createRepoItems()}
             </ol>
           </div>
         </div>

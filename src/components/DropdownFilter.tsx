@@ -1,7 +1,7 @@
 import * as React from "react";
 
-class DetailMenu extends React.Component<
-  { filterName: string },
+class DropdownFilter extends React.Component<
+  { filterName: string; optionList: Set<string> },
   { value: string; toggle: boolean }
 > {
   constructor(props: any) {
@@ -21,6 +21,21 @@ class DetailMenu extends React.Component<
     this.setState({ toggle: !this.state.toggle });
   };
 
+  public createDropdownItems() {
+    let options: any = [];
+
+    this.props.optionList.forEach(item => {
+      options.push(
+        <li>
+          <option className="dropdown-item" onClick={this.handleChange}>
+            {item}
+          </option>
+        </li>
+      );
+    });
+    return options;
+  }
+
   public render() {
     return (
       <div>
@@ -34,27 +49,12 @@ class DetailMenu extends React.Component<
             <span data-menu-button=""> {this.state.value} </span>
             <span className="dropdown-caret"></span>
           </summary>
-
           <ul
             className={
               this.state.toggle ? "dropdown-menu dropdown-menu-se" : "d-none"
             }
           >
-            <li>
-              <option className="dropdown-item" onClick={this.handleChange}>
-                Dropdown 1
-              </option>
-            </li>
-            <li>
-              <option className="dropdown-item" onClick={this.handleChange}>
-                Dropdown 2
-              </option>
-            </li>
-            <li>
-              <option className="dropdown-item" onClick={this.handleChange}>
-                Dropdown 3
-              </option>
-            </li>
+            {this.createDropdownItems()}
           </ul>
         </div>
       </div>
@@ -62,4 +62,4 @@ class DetailMenu extends React.Component<
   }
 }
 
-export default DetailMenu;
+export default DropdownFilter;

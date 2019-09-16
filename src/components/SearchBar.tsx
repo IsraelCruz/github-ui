@@ -1,8 +1,7 @@
 import * as React from "react";
-import DetailMenu from "./../components/DetailMenu";
 
-class RepositoryFilter extends React.Component<
-  { filterData: any },
+class SearchBar extends React.Component<
+  { filterData: any; },
   { searchValue: string }
 > {
   constructor(props: any) {
@@ -29,8 +28,8 @@ class RepositoryFilter extends React.Component<
 
   public render() {
     return (
-      <div className="border-bottom border-gray-dark py-3">
-        <form className="d-block d-sm-flex" onSubmit={this.handleSubmit}>
+      <div className="">
+        <form className="" onSubmit={this.handleSubmit}>
           {/* Search Bar */}
           <div className="mb-3 mb-sm-0 mr-sm-3 flex-auto">
             <input
@@ -41,19 +40,10 @@ class RepositoryFilter extends React.Component<
               onChange={this.handleChange}
             ></input>
           </div>
-          <div className="d-flex">
-            {/* Filters */}
-            <div className="details-reset details-overlay position-relative mr-2">
-              <DetailMenu filterName="Type" />
-            </div>
-            <div className="details-reset details-overlay position-relative mr-2">
-              <DetailMenu filterName="Language" />
-            </div>
-          </div>
         </form>
       </div>
     );
   }
 }
 
-export default RepositoryFilter;
+export default SearchBar;

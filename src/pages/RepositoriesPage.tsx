@@ -1,6 +1,7 @@
 import * as React from "react";
 import { RepositoryItem } from "./../components/RepositoryItem";
-import RepositoryFilter from "./../components/RepositoryFilter";
+import DropdownFilter from "./../components/DropdownFilter";
+import SearchBar from "./../components/SearchBar";
 import moment from "moment";
 
 const mockData = [
@@ -259,6 +260,9 @@ const mockData = [
   }
 ];
 
+const types: string[] = ["All", "Sources", "Forks", "Archived", "Mirrors"]
+const typeFilters: Set<string> = new Set(types);
+
 class RepositoriesPage extends React.Component<
   {},
   { repoData: any[]; filteredData: any[] }
@@ -293,15 +297,38 @@ class RepositoriesPage extends React.Component<
 
   public render() {
     let repositoryItems: any = [];
+    let languageList: Set<string> = new Set();
+    languageList.add("All");
     //empty care return ?
 
     this.state.filteredData.forEach(function(item) {
+      if (item.language) {
+        languageList.add(item.language);
+      }
       repositoryItems.push(<RepositoryItem item={item} />);
     });
 
     return (
       <div className="position-relative">
-        <RepositoryFilter filterData={this.filterData} />
+        <div className="border-bottom border-gray-dark py-3">
+          <div className="d-block d-sm-flex">
+            <div className="mb-3 mb-sm-0 mr-sm-3 flex-auto">
+              <SearchBar
+                filterData={this.filterData}
+              />
+            </div>
+            <div className="d-flex">
+              {/* Filters */}
+              <div className="details-reset details-overlay position-relative mr-2">
+                <DropdownFilter filterName="Type" optionList={typeFilters} />
+              </div>
+              <div className="details-reset details-overlay position-relative mr-2">
+                <DropdownFilter filterName="Language" optionList={languageList} />
+              </div>
+            </div>
+          </div>
+        </div>
+
         <ul>{repositoryItems}</ul>
       </div>
     );
