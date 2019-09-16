@@ -257,10 +257,21 @@ const mockData = [
   }
 ];
 
-class OverviewPage extends React.Component<{}, {}> {
+class OverviewPage extends React.Component<{}, { repoData: any[];}> {
   constructor(props: any) {
     super(props);
-    this.state = {};
+    this.state = {
+    	      repoData: [],
+
+    };
+  }
+
+
+  public componentDidMount() {
+
+  	let sortedData = mockData.sort(function(a, b){return b.stargazers_count - a.stargazers_count});
+
+    this.setState({ repoData: sortedData });
   }
 
   public render() {

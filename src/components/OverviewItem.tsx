@@ -1,7 +1,5 @@
 import * as React from "react";
-import dot from "./../images/icons/dot.svg";
-import star from "./../images/icons/star.svg";
-import fork from "./../images/icons/fork.svg";
+import { DetailIconList } from "./../components/DetailIconList";
 
 export const OverviewItem = (props: any) => {
   return (
@@ -16,35 +14,7 @@ export const OverviewItem = (props: any) => {
           <div className="pinned-item-desc text-gray text-small d-block mt-2 mb-3">
             {props.item.description}
           </div>
-
-          <p className="mb-0 f6 text-gray">
-            {props.item.language ? (
-              <span className="d-inline-block mr-3">
-                <img src={dot} className="" alt="" /> 
-                {props.item.language}
-              </span>
-            ) : (
-              <span />
-            )}
-
-            {props.item.stargazers_count ? (
-              <span className="d-inline-block mr-3">
-                <img src={star} className="" alt="" />
-                {props.item.stargazers_count}
-              </span>
-            ) : (
-              <span />
-            )}
-
-            {props.item.forks ? (
-              <span className="d-inline-block mr-3">
-                <img src={fork} className="" alt="" />
-                {props.item.forks}
-              </span>
-            ) : (
-              <span />
-            )}
-          </p>
+          <DetailIconList item={props.item} />
         </div>
       </div>
     </li>

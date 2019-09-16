@@ -1,7 +1,5 @@
 import * as React from "react";
-import dot from "./../images/icons/dot.svg";
-import star from "./../images/icons/star.svg";
-import fork from "./../images/icons/fork.svg";
+import { DetailIconList } from "./../components/DetailIconList";
 
 export const RepositoryItem = (props: any) => {
   return (
@@ -19,36 +17,8 @@ export const RepositoryItem = (props: any) => {
           </p>
         </div>
 
-        <p className="mb-0 f6 text-gray">
-          {props.item.language ? (
-            <span className="d-inline-block mr-3">
-              <img src={dot} className="" alt="" />
-              {props.item.language}
-            </span>
-          ) : (
-            <span />
-          )}
-
-          {props.item.stargazers_count ? (
-            <span className="d-inline-block mr-3">
-              <img src={star} className="" alt="" />
-              {props.item.stargazers_count}
-            </span>
-          ) : (
-            <span />
-          )}
-
-          {props.item.forks ? (
-            <span className="d-inline-block mr-3">
-              <img src={fork} className="" alt="" />
-              {props.item.forks}
-            </span>
-          ) : (
-            <span />
-          )}
-
-          <span>24 days ago</span>
-        </p>
+        <DetailIconList item={props.item} />
+        
       </div>
     </li>
   );

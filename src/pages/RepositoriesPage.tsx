@@ -1,6 +1,8 @@
 import * as React from "react";
 import { RepositoryItem } from "./../components/RepositoryItem";
+// import { DetailMenu } from "./../components/DetailMenu";
 import RepositoryFilter from "./../components/RepositoryFilter";
+import moment from "moment";
 
 const mockData = [
   {
@@ -273,6 +275,10 @@ class RepositoriesPage extends React.Component<
   }
 
   public componentDidMount() {
+    let sortedData = mockData.sort(function(a, b) {
+      return moment(b.updated_at).valueOf() - moment(a.updated_at).valueOf();
+    });
+
     this.setState({ repoData: mockData, filteredData: mockData });
   }
 
@@ -288,7 +294,6 @@ class RepositoriesPage extends React.Component<
 
   public render() {
     let repositoryItems: any = [];
-
     //empty care return ?
 
     this.state.filteredData.forEach(function(item) {
@@ -299,6 +304,7 @@ class RepositoriesPage extends React.Component<
       <div className="position-relative">
         <RepositoryFilter filterData={this.filterData} />
         <ul>{repositoryItems}</ul>
+        {/*<DetailMenu />*/}
       </div>
     );
   }
