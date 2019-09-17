@@ -1,7 +1,7 @@
 import * as React from "react";
 
 class SearchBar extends React.Component<
-  { filterData: any; },
+  { search: any },
   { searchValue: string }
 > {
   constructor(props: any) {
@@ -13,17 +13,17 @@ class SearchBar extends React.Component<
   }
 
   handleChange(event: any) {
-    console.log(this.state.searchValue);
     this.setState({ searchValue: event.target.value });
+    this.props.search(event.target.value);
   }
 
   handleSubmit(event: any) {
     event.preventDefault();
-    this.props.filterData(this.state.searchValue);
+    this.props.search(this.state.searchValue);
   }
 
   public componentDidUpdate() {
-    //this.props.filterData(this.state.searchValue);
+    //this.props.search(this.state.searchValue);
   }
 
   public render() {
@@ -31,7 +31,7 @@ class SearchBar extends React.Component<
       <div className="">
         <form className="" onSubmit={this.handleSubmit}>
           {/* Search Bar */}
-          <div className="mb-3 mb-sm-0 mr-sm-3 flex-auto">
+          <div className="mb-3 mb-sm-0 flex-auto">
             <input
               className="form-control width-full js-autosearch-field"
               placeholder="Find a repository…"

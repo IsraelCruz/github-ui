@@ -18,7 +18,6 @@ export const RepositoryItem = (props: any) => {
         </div>
 
         <DetailIconList item={props.item} />
-        
       </div>
     </li>
   );

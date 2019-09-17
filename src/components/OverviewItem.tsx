@@ -12,7 +12,7 @@ export const OverviewItem = (props: any) => {
             </a>
           </div>
           <div className="pinned-item-desc text-gray text-small d-block mt-2 mb-3">
-            {props.item.description}
+            {props.item.description || <span>&nbsp;&nbsp;</span>}
           </div>
           <DetailIconList item={props.item} />
         </div>

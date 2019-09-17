@@ -1,37 +1,62 @@
 import * as React from "react";
-import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  NavLink,
+  RouteComponentProps
+} from "react-router-dom";
 import OverviewPage from "./../pages/OverviewPage";
 import RepositoriesPage from "./../pages/RepositoriesPage";
 
-class Navigation extends React.Component<{}, {}> {
+class Navigation extends React.Component<{}, { repoCount: number }> {
   constructor(props: any) {
     super(props);
-    this.state = {};
+    this.state = {
+      repoCount: 0
+    };
+    this.setRepoCount = this.setRepoCount.bind(this);
   }
+
+  public setRepoCount(repoCount: number) {
+    if (this.state.repoCount == 0) {
+      this.setState({ repoCount });
+    }
+  }
+
   public render() {
-  	//var currentLocation = window.location.pathname;
-  	//console.log(currentLocation)
     return (
       <Router>
         <div className="UnderlineNav width-full user-profile-nav js-sticky top-0">
           <div className="UnderlineNav-body">
-            <Link
-              className="UnderlineNav-item mr-0 mr-md-1 mr-lg-3 selected"
+            <NavLink
+              exact
+              activeClassName="UnderlineNav-item mr-0 mr-md-1 mr-lg-3 selected"
+              className="UnderlineNav-item mr-0 mr-md-1 mr-lg-3"
               to="/"
             >
               Overview
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
+              exact
+              activeClassName="UnderlineNav-item mr-0 mr-md-1 mr-lg-3 selected"
               className="UnderlineNav-item mr-0 mr-md-1 mr-lg-3"
               to="/Repositories/"
             >
               Repositories
-              <span className="Counter hide-lg hide-md hide-sm">55</span>
-            </Link>
+              <span className="Counter hide-lg hide-md hide-sm ml-1">
+                {this.state.repoCount || ""}
+              </span>
+            </NavLink>
           </div>
         </div>
 
-        <Route path="/" exact component={OverviewPage} />
+        <Route
+          path="/"
+          exact
+          component={(props: any) => (
+            <OverviewPage setRepoCount={this.setRepoCount} />
+          )}
+        />
         <Route path="/Repositories/" component={RepositoriesPage} />
       </Router>
     );

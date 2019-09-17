@@ -1,7 +1,12 @@
 import * as React from "react";
 
 class DropdownFilter extends React.Component<
-  { filterName: string; optionList: Set<string> },
+  {
+    filterName: string;
+    optionList: Set<string>;
+    filterData: any;
+    disabled?: boolean;
+  },
   { value: string; toggle: boolean }
 > {
   constructor(props: any) {
@@ -12,13 +17,17 @@ class DropdownFilter extends React.Component<
   }
 
   handleChange(event: any) {
-    console.log(event.target.value);
     this.toggleDropdown();
+    let filterType = this.props.filterName;
+    let filterValue = event.target.value;
+    this.props.filterData(filterValue, filterType);
     this.setState({ value: event.target.value });
   }
 
   toggleDropdown = () => {
-    this.setState({ toggle: !this.state.toggle });
+    if (this.props.disabled) {
+      this.setState({ toggle: !this.state.toggle });
+    }
   };
 
   public createDropdownItems() {
