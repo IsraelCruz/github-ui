@@ -74,6 +74,7 @@ class RepositoriesPage extends React.Component<
     fetch("https://api.github.com/users/octocat/repos")
       .then(response => response.json())
       .then(data => {
+        console.log(data);
         let sortedData = data.sort(function(a: any, b: any) {
           return (
             moment(b.updated_at).valueOf() - moment(a.updated_at).valueOf()
